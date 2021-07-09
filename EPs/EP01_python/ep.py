@@ -21,7 +21,7 @@ def decolar(drone, armado, voando):
 
     # Verificar se o drone esta armado e no chao
     if armado == True and altura == 0:
-        altura = int(input("Para qual altura voce quer que seu drone decole?\n"))
+        altura = float(input("Para qual altura voce quer que seu drone decole?\n"))
         print(drone,"decolado com sucesso para altura",altura)
     return True
 
@@ -48,13 +48,13 @@ def mudar_posicao(drone, armado, voando):
         velocidade = float(input("Velocidade do drone: "))
 
         # Calcular as componentes do vetor velocidade
-        alpha = np.atan2(altura - altura_inicial, posicao)
+        alpha = np.atan2(altura - altura_inicial, posicao - posicao_inicial)
         vel_x = velocidade * np.cos(alpha)
         vel_y = velocidade * np.sin(alpha)
 
         # Indicar a posicao e a altura do drone a cada segundo
-
-        while posicao_t < posicao and altura_t < altura: 
+        
+        while posicao_t < posicao or altura_t < altura: 
             print("Posicao no instante t",tempo,": (",posicao_t,",",altura_t,")")
             posicao_t += vel_x
             altura_t += vel_y

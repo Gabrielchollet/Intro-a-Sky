@@ -38,7 +38,31 @@ Essa interface deverá aparecer para o usuário até que ele escolha a opção n
 
 ### C++ 
 
+<hr>
+
 ### Python
 Desafio: Criar uma versão da solução desse exercício aplcando os conceitos de POO (Programação Orientada a Objeto)
+
+#### Conceitos aprendidos:
+
+<details>
+<summary>Expandir</summary>
+O método especial `__init__`
+- Conhecido como **Construtor** de classe
+- Chamado automaticamente pelo interpretador quando os objetos são criados
+  - *Ex: quando as classes são instanciadas*
+
+```
+class Drone:
+    def __init__(self, nome, posicao, altura, armado, voando):
+        self.nome = nome
+        self.posicao = posicao
+        self.altura = altura
+        self.armado = armado
+        self.voando = voando
+```
+
+
+</details>
 
 </details>

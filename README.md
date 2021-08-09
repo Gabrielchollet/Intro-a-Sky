@@ -38,6 +38,22 @@ Essa interface deverá aparecer para o usuário até que ele escolha a opção n
 
 ### C++ 
 
+#### Conceitos aprendidos:
+
+<details>
+<summary>Expandir</summary>
+class Pizza {
+  public: 
+    void retirar_fatia() {
+    fatias--;
+  }
+  private:
+    string sabor;
+    int 
+}
+
+</details>
+
 <hr>
 
 ### Python

@@ -1,8 +1,11 @@
+#include <iostream>
+#include <cmath>
 #include "drone.hpp"
+using namespace std;
 
-void Drone::set_name()
+void Drone::set_name(string drone)
 {
-  Nome = drone;
+  this->Nome = drone;
 }
 
 string Drone::get_name()
@@ -12,7 +15,7 @@ string Drone::get_name()
 
 void Drone::set_altura(double altura)
 {
-  Altura = altura;
+  this->Altura = altura;
 }
 
 double Drone::get_altura()
@@ -22,7 +25,7 @@ double Drone::get_altura()
 
 void Drone::set_posicao(double posicao)
 {
-  Posicao = posicao;
+  this->Posicao = posicao;
 }
 
 double Drone::get_posicao()
@@ -32,7 +35,7 @@ double Drone::get_posicao()
 
 void Drone::set_armado(bool armado)
 {
-  Armado = armado;
+  this->Armado = armado;
 }
 
 bool Drone::get_armado()
@@ -40,9 +43,9 @@ bool Drone::get_armado()
   return Armado;
 }
 
-void Drone::set_decolado()
+void Drone::set_decolado(bool decolado)
 {
-  Decolado = decolado;
+  this->Decolado = decolado;
 }
 
 bool Drone::get_decolado()
@@ -50,9 +53,9 @@ bool Drone::get_decolado()
   return Decolado;
 }
 
-void Drone::set_velocidade()
+void Drone::set_velocidade(double velocidade)
 {
-  Velocidade = velocidade;
+  this->Velocidade = velocidade;
 }
 
 double Drone::get_velocidade()
@@ -60,102 +63,104 @@ double Drone::get_velocidade()
   return Velocidade;
 }
 
-bool Drone::armar(string drone, bool armado, bool decolado)
+bool Drone::armar()
 {
-  if (armado == true)
+  if (this->Armado == true)
   {
-    cout << drone << " ja foi armado!" << endl;
+    cout << this->Nome << " ja foi armado!" << endl;
     return true;
   }
   else
   {
-    cout << drone << " armado com sucesso!" << endl;
-    armado = true;
+    cout << this->Nome << " armado com sucesso!" << endl;
+    this->Armado = true;
   }
   return true;
 }
 
-bool Drone::decolar(string drone, bool armado, bool decolado, double altura)
+bool Drone::decolar()
 {
-  if (armado == false)
+  if (this->Armado == false)
   {
-    cout << drone << " precisa ser armado antes de decolar" << endl;
+    cout << this->Nome << " precisa ser armado antes de decolar" << endl;
     return false;
   }
-  if (decolado == true)
+  if (this->Decolado == true)
   {
-    cout << drone << " ja esta voando" << endl;
+    cout << this->Nome << " ja esta voando" << endl;
     return true;
   }
-  if (armado == true && altura == 0)
+  if (this->Armado == true && this->Altura == 0)
   {
     cout << "Para qual altura voce quer que seu drone decole?" << endl;
-    cin >> altura;
-    set_altura(altura);
-    cout << drone << " decolado com sucesso para altura " << altura << endl;
+    cin >> this->Altura;
+    set_altura(this->Altura);
+    cout << this->Nome << " decolado com sucesso para altura " << this->Altura << endl;
     return true;
   }
 }
 
-void Drone::mudar_posicao(string drone, bool decolado, double &posicao, double &altura)
+void Drone::mudar_posicao()
 {
-  double altura_inicial = altura;
-  double posicao_inicial = posicao;
+  double altura_inicial = this->Altura;
+  double posicao_inicial = this->Posicao;
 
   double altura_t = altura_inicial;
   double posicao_t = posicao_inicial;
 
-  double velocidade = 0, vel_x, vel_y, alpha;
+  double vel_x, vel_y, alpha;
+
+  this->Velocidade = 0;
 
   int tempo = 0;
 
-  if (decolado == false)
+  if (this->Decolado == false)
   {
-    cout << drone << " precisa ser decolado antes de mudar de posicao" << endl;
+    cout << this->Nome << " precisa ser decolado antes de mudar de posicao" << endl;
     return;
   }
   else
   {
     cout << "Posicao atual: "
-         << "(" << posicao << "," << altura << ")" << endl;
+         << "(" << this->Posicao << "," << this->Altura << ")" << endl;
     cout << "Qual posicao voce quer ir?" << endl;
     cout << "Posicao desejada: ";
-    cin >> posicao;
+    cin >> this->Posicao;
     cout << "Altura desejada: ";
-    cin >> altura;
+    cin >> this->Altura;
     cout << "Velocidade desejada: ";
-    cin >> velocidade;
-    alpha = atan2(altura - altura_inicial, posicao - posicao_inicial);
-    vel_x = velocidade * cos(alpha);
-    vel_y = velocidade * sin(alpha);
+    cin >> this->Velocidade;
+    alpha = atan2(this->Altura - altura_inicial, this->Posicao - posicao_inicial);
+    vel_x = this->Velocidade * cos(alpha);
+    vel_y = this->Velocidade * sin(alpha);
   }
 
-  while ((altura_t < altura) || (posicao_t < posicao))
+  while ((altura_t < this->Altura) || (posicao_t < this->Posicao))
   {
     cout << "Posicao no instante t" << tempo << ": (" << posicao_t << "," << altura_t << ")" << endl;
     posicao_t += vel_x;
     altura_t += vel_y;
     tempo++;
   }
-  cout << drone << " foi para (" << posicao << "," << altura << ") com sucesso!" << endl;
+  cout << this->Nome << " foi para (" << this->Posicao << "," << this->Altura << ") com sucesso!" << endl;
 }
 
-void Drone::pousar(string drone, bool decolado, bool armado, double altura)
+void Drone::pousar()
 {
-  if (altura == 0)
+  if (this->Altura == 0)
   {
-    cout << drone << " ja esta no chao" << endl;
+    cout << this->Nome << " ja esta no chao" << endl;
     return;
   }
-  else if (decolado == true)
+  else if (this->Decolado == true)
   {
-    cout << drone << " pousado com sucesso!" << endl;
-    altura = 0;
-    decolado = false;
+    cout << this->Nome << " pousado com sucesso!" << endl;
+    this->Altura = 0;
+    this->Decolado = false;
   }
 }
 
-void Drone::Drone(string nome, double altura, double posicao, double velocidade, bool armado, bool decolado)
+Drone::Drone(string nome, double altura, double posicao, double velocidade, bool armado, bool decolado)
 {
   set_name(nome);
   set_altura(altura);

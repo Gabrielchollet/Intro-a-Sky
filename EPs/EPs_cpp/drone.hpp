@@ -15,7 +15,7 @@ private:
   double Velocidade;
 
 public:
-  void set_name();
+  void set_name(string drone);
   string get_name();
 
   void set_altura(double altura);
@@ -33,13 +33,13 @@ public:
   void set_velocidade(double velocidade);
   double get_velocidade();
 
-  bool armar(string drone, bool armado, bool decolado);
+  bool armar();
 
-  bool decolar(string drone, bool armado, bool decolado, double altura);
+  bool decolar();
 
-  void mudar_posicao(string drone, bool decolado, double posicao, double altura);
+  void mudar_posicao();
 
-  void pousar(string drone, bool decolado, bool armado, double altura);
+  void pousar();
   // Construtor
   Drone(string nome, double altura, double posicao, double velocidade, bool armado, bool decolado);
 };

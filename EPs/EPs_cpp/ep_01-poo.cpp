@@ -18,7 +18,7 @@ int main()
   cout << "Altura inicial: ";
   cin >> altura;
 
-  Drone *meu_drone = Drone(drone, altura, posicao, velocidade, armado, decolado);
+  Drone *meu_drone = new Drone(drone, altura, posicao, velocidade, armado, decolado);
 
   int escolha = 0;
 
@@ -33,19 +33,19 @@ int main()
     cin >> escolha;
     if (escolha == 1)
     {
-      meu_drone->set_armado(meu_drone->get_armado()) = armar(drone, armado, decolado);
+      meu_drone->set_armado(meu_drone->armar());
     }
     else if (escolha == 2)
     {
-      meu_drone->set_decolado(meu_drone->get_decolado()) = decolar(drone, armado, decolado, altura);
+      meu_drone->set_decolado(meu_drone->decolar());
     }
     else if (escolha == 3)
     {
-      meu_drone->mudar_posicao(drone, decolado, posicao, altura);
+      meu_drone->mudar_posicao();
     }
     else if (escolha == 4)
     {
-      meu_drone->pousar(drone, decolado, armado, altura);
+      meu_drone->pousar();
     }
     else
     {

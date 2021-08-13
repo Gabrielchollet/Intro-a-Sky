@@ -1,18 +1,54 @@
 class Drone():
     def __init__(self, nome, bateria, posicao):
-        raise NotImplementedError
+        self.nome = nome
+        self.bateria = bateria
+        self.posicao = posicao
+        self.altura = 0
+        self.decolado = False
+
+    def enough_charge(self, tempo_de_uso):
+        if tempo_de_uso <= self.bateria.calcula_tempo_de_voo():
+            return True
+        else:
+            return False
 
     def takeoff(self, altura):
-        raise NotImplementedError
+        tempo_de_uso = altura / 60
+        if self.enough_charge(tempo_de_uso):
+            self.bateria.usar(tempo_de_uso)
+            self.altura = altura
+            self.decolado = True
+            self.bateria.carregavel = False
+            self.bateria.uso = True
+            return True
+        else:
+            print("O drone nao possui bateria suficiente!")
+            return False
 
     def set_position(self, x, y):
-        raise NotImplementedError
+        distance = (x**2 + y**2) ** 0.5
+        tempo_de_uso = distance / 60
+
+        if self.enough_charge(tempo_de_uso) and self.decolado == True and y > 0:
+            self.bateria.usar(tempo_de_uso)
+            self.posicao = x
+            self.altura = y
+            return True
+        else:
+            print("O drone nao possui bateria suficiente!")
+            return False
 
     def land(self):
-        raise NotImplementedError
+        self.altura = 0
+        self.decolado = False
+        self.bateria.carregavel = True
 
     def mapear(self):
-        raise NotImplementedError
+        print("O drone " + self.name + " nao eh capaz de mapear :(")
+        return False
 
     def status(self):
-        raise NotImplementedError
+        print("Drone " + self.nome)
+        print("Bateria com " + str(self.bateria.carga) + " mAh")
+        print("Drone esta na posicao (%.1f,%.1f)" %
+              (self.posicao, self.altura))

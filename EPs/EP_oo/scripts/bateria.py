@@ -10,6 +10,7 @@ class Bateria():
 
     def carregar(self, tempo):
         if self.carga == self.mah:
+            print("A bateria ja esta carregada!")
             return False
         else:
             self.carga += (self.mah * tempo) / self.tempoDeCarregamento
@@ -22,6 +23,7 @@ class Bateria():
             self.carga -= consumo
             return True
         else:
+            print("A bateria nao aguenta ser usada por esse intervalo de tempo!")
             return False
 
     def calcula_tempo_de_voo(self):

@@ -108,7 +108,6 @@ class Drone:
                   (self.nome, self.posicao, self.altura))
 
     def pousar(self):
-        # Verificar se o drone esta no chao
         if self.altura == 0:
             print("%s ja esta no chao" % (self.nome))
         elif self.voando == True:

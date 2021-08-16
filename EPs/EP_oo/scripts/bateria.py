@@ -1,5 +1,3 @@
-
-
 class Bateria():
     def __init__(self, mah, tempoDeCarregamento):
         self.mah = mah

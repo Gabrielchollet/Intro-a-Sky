@@ -20,6 +20,7 @@ class Drone():
             self.decolado = True
             self.bateria.carregavel = False
             self.bateria.uso = True
+            print("Drone decolado para altura: " + altura)
             return True
         else:
             print("O drone nao possui bateria suficiente!")
@@ -39,9 +40,13 @@ class Drone():
             return False
 
     def land(self):
-        self.altura = 0
-        self.decolado = False
-        self.bateria.carregavel = True
+        if self.altura == 0:
+            print("%s ja esta no chao" % (self.nome))
+        elif self.voando == True:
+            print("%s pousado com sucesso!" % (self.nome))
+            self.bateria.carregavel = True
+            self.altura = 0
+            self.decolado = False
 
     def mapear(self):
         print("O drone " + self.name + " nao eh capaz de mapear :(")

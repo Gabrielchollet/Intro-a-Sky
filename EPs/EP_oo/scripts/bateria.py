@@ -7,12 +7,17 @@ class Bateria():
         self.carregavel
 
     def carregar(self, tempo):
-        if self.carga == self.mah:
-            print("A bateria ja esta carregada!")
-            return False
+        if self.carregavel == True:
+            if self.carga == self.mah:
+                print("A bateria ja esta carregada!")
+                return False
+            else:
+                print("A bateria foi carregada com sucesso!")
+                self.carga += (self.mah * tempo) / self.tempoDeCarregamento
+                return True
         else:
-            self.carga += (self.mah * tempo) / self.tempoDeCarregamento
-            return True
+            print("A bateria nao pode ser carregada!")
+            return False
 
     def usar(self, tempo):
         # tempoDeCarregamento == tempoDeVoo

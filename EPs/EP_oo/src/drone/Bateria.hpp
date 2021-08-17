@@ -1,10 +1,18 @@
 #ifndef BATERIA_H
 #define BATERIA_H
 
-class Bateria {
+class Bateria
+{
+private:
+    int mah;
+    int tempoDeCarregamento;
+    int carga = 0;
+    bool uso;
+    bool carregavel;
+
 public:
     Bateria(int mah, int tempoDeCarregamento);
-    ~Bateria();
+    virtual ~Bateria();
     bool carregar(int tempo);
     bool usar(int tempo);
     int calculaTempoDeVoo();

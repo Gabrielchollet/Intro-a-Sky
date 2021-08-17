@@ -5,11 +5,20 @@
 #include <string>
 using namespace std;
 
-class Drone {
+class Drone
+{
+private:
+    string nome;
+    Bateria *bateria;
+    double posicao;
+    int altura = 0;
+    bool decolado = false;
+
 public:
-    Drone(string nome, Bateria* bateria, double posicao);
+    Drone(string nome, Bateria *bateria, double posicao);
     virtual ~Drone();
 
+    bool enough_charge(int tempoDeUso);
     void takeoff(int altura);
     bool setPosition(double x, double y);
     void land();
@@ -17,7 +26,7 @@ public:
     void status();
 
     string getNome();
-    Bateria* getBateria();
+    Bateria *getBateria();
     double getPosicao();
     double getAltura();
     bool getDecolado();

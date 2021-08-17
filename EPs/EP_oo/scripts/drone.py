@@ -30,13 +30,17 @@ class Drone():
         distance = (x**2 + y**2) ** 0.5
         tempo_de_uso = distance / 60
 
-        if self.enough_charge(tempo_de_uso) and self.decolado == True and y > 0:
-            self.bateria.usar(tempo_de_uso)
-            self.posicao = x
-            self.altura = y
-            return True
+        if self.decolado == True:
+            if self.enough_charge(tempo_de_uso) and y > 0:
+                self.bateria.usar(tempo_de_uso)
+                self.posicao = x
+                self.altura = y
+                return True
+            else:
+                print("O drone nao possui bateria suficiente!")
+                return False
         else:
-            print("O drone nao possui bateria suficiente!")
+            print("O drone precisa ser decolado!")
             return False
 
     def land(self):

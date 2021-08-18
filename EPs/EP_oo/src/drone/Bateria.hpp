@@ -12,7 +12,7 @@ private:
 
 public:
     Bateria(int mah, int tempoDeCarregamento);
-    virtual ~Bateria();
+    ~Bateria();
     bool carregar(int tempo);
     bool usar(int tempo);
     int calculaTempoDeVoo();

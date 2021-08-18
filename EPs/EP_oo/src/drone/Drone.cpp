@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string.h>
+#include <math.h>
 #include "Bateria.hpp"
 #include "Drone.hpp"
 using namespace std;
@@ -11,9 +12,9 @@ Drone::Drone(string nome, Bateria *bateria, double posicao)
   this->posicao = posicao;
 }
 
-virtual Drone::~Drone()
+Drone::~Drone() {}
 
-    bool Drone::enough_charge(int tempoDeUso)
+bool Drone::enough_charge(int tempoDeUso)
 {
   if (tempoDeUso <= bateria->calculaTempoDeVoo())
   {
@@ -50,7 +51,7 @@ bool Drone::setPosition(double x, double y)
   {
     if (y > 0)
     {
-      double distance = (x * *2 + y * *2) * *0.5;
+      double distance = pow(pow(x, 2) + pow(y, 2), 0.5);
       int tempoDeUso = distance / 60;
       if (this->enough_charge(tempoDeUso))
       {
@@ -87,10 +88,23 @@ double Drone::getAltura()
   return this->altura;
 }
 
-void land()
+void Drone::land()
 {
   this->altura = 0;
   this->decolado = false;
-  this->bateria->carregavel = true;
-  cout << ""
+  this->bateria->setCarregavel(true);
+  cout << this->nome << " foi pousado com sucesso!" << endl;
+}
+
+bool Drone::mapear()
+{
+  cout << this->nome << " nao eh capaz de mapear :(" << endl;
+  return false;
+}
+
+void Drone::status()
+{
+  cout << "Drone " << this->nome << endl;
+  cout << "Bateria com " << this->bateria->getCarga() << " mAh" << endl;
+  cout << this->nome << "esta na posicao (" << this->posicao << "," << this->altura << endl;
 }

@@ -8,9 +8,9 @@ Bateria::Bateria(int mah, int tempoDeCarregamento)
   this->tempoDeCarregamento = tempoDeCarregamento;
 }
 
-virtual Bateria::~Bateria()
+Bateria::~Bateria() {}
 
-    bool Bateria::carregar(int tempo)
+bool Bateria::carregar(int tempo)
 {
   if (this->carregavel == true)
   {
@@ -68,12 +68,12 @@ int Bateria::getMah()
   return this->mah;
 }
 
-int Bateria::getUso()
+bool Bateria::getUso()
 {
   return this->uso;
 }
 
-int Bateria::getCarregavel()
+bool Bateria::getCarregavel()
 {
   return this->carregavel;
 }
@@ -88,11 +88,26 @@ void Bateria::setCarregavel(bool carregavel)
   this->carregavel = carregavel;
 }
 
-void Bateria::status() const
+void Bateria::status()
 {
   cout << "Bateria com capacidade " << this->mah << " e tempo de carregamento " << this->tempoDeCarregamento << endl;
   cout << "Com carga atual: " << this->carga << endl;
   cout << "Tempo de voo disponivel: " << this->calculaTempoDeVoo() << endl;
-  cout << "Esta sendo usada" << (this->uso) ? "sim" : "nao" << endl;
-  cout << "Pode ser carregada no momento: " << (this->carregavel) ? "sim" : "nao" << endl;
+  if (this->uso)
+  {
+    cout << "Esta sendo usada: sim." << endl;
+  }
+  else
+  {
+    cout << "Esta sendo usada: nao." << endl;
+  }
+
+  if (this->carregavel)
+  {
+    cout << "Pode ser carregada no momento: Sim." << endl;
+  }
+  else
+  {
+    cout << "Pode ser carregada no momento: Nao." << endl;
+  }
 }

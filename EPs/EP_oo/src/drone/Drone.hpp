@@ -2,7 +2,6 @@
 #define DRONE_H
 
 #include "Bateria.hpp"
-#include <string>
 using namespace std;
 
 class Drone
@@ -16,7 +15,7 @@ private:
 
 public:
     Drone(string nome, Bateria *bateria, double posicao);
-    virtual ~Drone();
+    ~Drone();
 
     bool enough_charge(int tempoDeUso);
     void takeoff(int altura);

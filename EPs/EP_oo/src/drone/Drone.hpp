@@ -6,7 +6,7 @@ using namespace std;
 
 class Drone
 {
-private:
+protected:
     string nome;
     Bateria *bateria;
     double posicao;

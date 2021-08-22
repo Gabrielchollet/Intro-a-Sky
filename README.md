@@ -2,24 +2,29 @@
 
 # Workshops - Exercícios Programas: Skyrats
 
-Este repositório contém em alguns dos códigos e aprendizados desenvolvidos durante os workshops incríveis feitos pelo pessoal>
+Criei este repositório como uma forma de demonstrar publicamente alguns dos aprendizados desenvolvidos durante o tempo que fui membro dessa equipe incrível chamada [Skyrats](SkyRats.github.io)
 
 ## Roadmap 
 
 1. Ubuntando o PC
 2. Intro a Git e Linux 
 3. C++ e Python
+4. Desenvolvendo site
+5. Programação Orientada a Objeto em C++ e Python 
+6. ROS
+7. Blender
+8. OpenCV
+9. Gazebo
 
 <hr>
 
 ## Exercício Programa (EP) - Workshop de introdução à Programação
 
-<details>
-<summary>Expandir</summary>
-
 ### Introdução
 
-Desenvolvemos uma versão simplificada de uma estação de controle nas linguagens de programação Python e C++.
+Neste workshop fomos introduzidos aos principais características da sintaxe das linguagens de programação Python e C++. E para aplicar os conceitos passados durante as aulas foi proposto o desenvolvimento de uma versão simplificada de uma estação de controle nas linguagens aprendidas.
+
+**Desafio**: Criar uma versão da solução desse exercício aplcando os conceitos de POO (Programação Orientada a Objeto)
 
 ### Funcionamento
 
@@ -36,49 +41,15 @@ O código deve ter uma interface em que o usuário tem 5 opções de escolha:
 5. Sair da interface
 Essa interface deverá aparecer para o usuário até que ele escolha a opção número 5.
 
-### C++ 
+#### Conceitos aprendidos
 
-#### Conceitos aprendidos:
-
-<details>
-<summary>Expandir</summary>
-class Pizza {
-  public: 
-    void retirar_fatia() {
-    fatias--;
-  }
-  private:
-    string sabor;
-    int 
-}
-
-</details>
+Em resumo, foi desafiador realizar esse projeto em C++ apesar de estar familiarizado com a linguagem C e muito interessante conhecer um linguagem totalmente diferente do que eu estava acostumado até então. 
+Além disso, estudar por conta própria um novo paradigma de programação e aplicar em ambas as linguagem a um desafio anteriormente resolvido por meio do paradigma imperativo me permitiu compreender as bases desse novo mundo - _Orientado a Objetos_ - e perceber mais claramente as diferenças entre Python e C++, haja visto que aquela se mostrou muito deficiente em termos de recursos para aplicar de forma mais consistente as especificações exigidas pelo escopo do projeto.
 
 <hr>
 
-### Python
-Desafio: Criar uma versão da solução desse exercício aplcando os conceitos de POO (Programação Orientada a Objeto)
+## Exercício Programa (EP) - Desenvolvimento de Site
 
-#### Conceitos aprendidos:
+### Introdução
 
-<details>
-<summary>Expandir</summary>
-O método especial `__init__`
-- Conhecido como **Construtor** de classe
-- Chamado automaticamente pelo interpretador quando os objetos são criados
-  - *Ex: quando as classes são instanciadas*
-
-```
-class Drone:
-    def __init__(self, nome, posicao, altura, armado, voando):
-        self.nome = nome
-        self.posicao = posicao
-        self.altura = altura
-        self.armado = armado
-        self.voando = voando
-```
-
-
-</details>
-
-</details>
+### Conceitos aprendidos

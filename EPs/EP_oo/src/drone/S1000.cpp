@@ -5,7 +5,7 @@
 #include "S1000.hpp"
 using namespace std;
 
-S1000::S1000(string nome, Bateria *bateria, double posicao)
+S1000::S1000(string nome, Bateria *bateria, double posicao) : Drone(nome, bateria, posicao)
 {
   this->nome = nome;
   this->bateria = bateria;

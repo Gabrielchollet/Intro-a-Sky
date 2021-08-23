@@ -14,9 +14,9 @@ Drone::Drone(string nome, Bateria *bateria, double posicao)
 
 Drone::~Drone() {}
 
-bool Drone::enough_charge(int tempoDeUso)
+bool Drone::enough_charge(double tempoDeUso)
 {
-  if (tempoDeUso <= bateria->calculaTempoDeVoo())
+  if (tempoDeUso <= bateria->calculaTempoDeVoo() && bateria->calculaTempoDeVoo() != 0)
   {
     return true;
   }
@@ -28,7 +28,7 @@ bool Drone::enough_charge(int tempoDeUso)
 
 void Drone::takeoff(int altura)
 {
-  int tempoDeUso = altura / 60;
+  double tempoDeUso = altura / 60;
   if (this->enough_charge(tempoDeUso))
   {
     this->decolado = true;
@@ -51,12 +51,14 @@ bool Drone::setPosition(double x, double y)
   {
     if (y > 0)
     {
-      double distance = pow(pow(x, 2) + pow(y, 2), 0.5);
+      double distance = sqrt(pow(x - this->posicao, 2) + pow(y - this->altura, 2));
       int tempoDeUso = distance / 60;
       if (this->enough_charge(tempoDeUso))
       {
         this->posicao = x;
         this->altura = y;
+        cout << this->nome << " se encontra em (" << this->posicao << "," << this->altura << ")" << endl;
+        this->bateria->usar(tempoDeUso);
         return true;
       }
       else
@@ -67,7 +69,7 @@ bool Drone::setPosition(double x, double y)
     }
     else
     {
-      cout << "O drone nao pode ir para uma altura <= 0." << endl;
+      cout << "O drone nao pode ir para uma altura menor ou igual a 0." << endl;
       return false;
     }
   }
@@ -76,16 +78,6 @@ bool Drone::setPosition(double x, double y)
     cout << "O drone precisa ser decolado!" << endl;
     return false;
   }
-}
-
-double Drone::getPosicao()
-{
-  return this->posicao;
-}
-
-double Drone::getAltura()
-{
-  return this->altura;
 }
 
 void Drone::land()
@@ -107,4 +99,29 @@ void Drone::status()
   cout << "Drone " << this->nome << endl;
   cout << "Bateria com " << this->bateria->getCarga() << " mAh" << endl;
   cout << this->nome << "esta na posicao (" << this->posicao << "," << this->altura << endl;
+}
+
+string Drone::getNome()
+{
+  return this->nome;
+}
+
+Bateria *Drone::getBateria()
+{
+  return this->bateria;
+}
+
+double Drone::getPosicao()
+{
+  return this->posicao;
+}
+
+double Drone::getAltura()
+{
+  return this->altura;
+}
+
+bool Drone::getDecolado()
+{
+  return this->decolado;
 }

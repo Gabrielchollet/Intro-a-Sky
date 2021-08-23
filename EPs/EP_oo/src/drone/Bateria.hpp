@@ -7,8 +7,8 @@ private:
     int mah;
     int tempoDeCarregamento;
     int carga = 0;
-    bool uso;
-    bool carregavel;
+    bool uso = true;
+    bool carregavel = true;
 
 public:
     Bateria(int mah, int tempoDeCarregamento);

@@ -12,7 +12,7 @@ Bateria::~Bateria() {}
 
 bool Bateria::carregar(int tempo)
 {
-  if (this->carregavel == true)
+  if (this->getCarregavel() == true)
   {
     if (carga == this->mah)
     {
@@ -36,7 +36,7 @@ bool Bateria::carregar(int tempo)
 bool Bateria::usar(int tempo)
 {
   int consumo_de_bateria = (this->mah * tempo) / this->tempoDeCarregamento;
-  if (this->carga > consumo_de_bateria)
+  if (this->carga >= consumo_de_bateria && this->carga != 0 && this->uso == true)
   {
     this->carga -= consumo_de_bateria;
     return true;

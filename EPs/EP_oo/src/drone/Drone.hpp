@@ -17,7 +17,7 @@ public:
     Drone(string nome, Bateria *bateria, double posicao);
     ~Drone();
 
-    bool enough_charge(int tempoDeUso);
+    bool enough_charge(double tempoDeUso);
     void takeoff(int altura);
     bool setPosition(double x, double y);
     void land();

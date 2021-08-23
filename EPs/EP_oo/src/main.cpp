@@ -2,20 +2,20 @@
 #include <string.h>
 #include <vector>
 
-#include <Bateria.hpp>
-#include <Drone.hpp>
-#include <S1000.hpp>
+#include "./drone/Bateria.hpp"
+#include "./drone/Drone.hpp"
+#include "./drone/S1000.hpp"
 
 using namespace std;
 
 void mainInterface();
-int escolherBateria(vector<Bateria> baterias);
+int escolherBateria(vector<Bateria> *baterias);
 
 int main()
 {
-    vector<Bateria> baterias = new vector<Bateria>();
+    vector<Bateria> *baterias = new vector<Bateria>();
 
-    vector<Drone> drones = new vector<Drone>();
+    vector<Drone> *drones = new vector<Drone>();
 
     cout << "\tWellcome to My Drone Simulator" << endl;
 
@@ -35,33 +35,44 @@ int main()
             cin >> mah;
             cout << "Qual o tempo de carregamento maximo da bateria desejada?" << endl;
             cin >> tempoDeCarregamento;
-
-            baterias.push_back(new Bateria(mah, tempoDeCarregamento));
+            Bateria *bateria_comprada = new Bateria(mah, tempoDeCarregamento);
+            baterias->push_back(*bateria_comprada);
         }
         else if (escolha == 2)
         {
             double posicao;
+            string nome = "S1000";
             // Comprar um S1000
-            cout << "Em que posicao seu S1000 se encontra?" cin >> posicao;
-
-            drones.push_back(new Drone("S1000", Bateria(22000, 40), posicao))
+            cout << "Em que posicao seu S1000 se encontra?" << endl;
+            cin >> posicao;
+            Bateria *batS1000 = new Bateria(22000, 40);
+            S1000 *S1000_comprado = new S1000(nome, batS1000, posicao);
+            drones->push_back(*S1000_comprado);
         }
         else if (escolha == 3)
         {
             string nome;
-
+            double posicao;
             // Montar um drone genérico
             cout << "Qual o nome do seu drone?" << endl;
             cin >> nome;
-            cout << "Em que posicao seu S1000 se encontra?" cin >> posicao;
-            int bateriaId = escolherBateria(baterias);
-            drones.push_back(new Drone(nome, baterias.at(bateriaId), posicao));
+            cout << "Em que posicao seu S1000 se encontra?" << endl;
+            cin >> posicao;
 
-            baterias.erase(bateriaId);
+            int bateriaId = escolherBateria(baterias);
+            baterias->at(bateriaId).setUso(false);
+
+            Drone *drone_montado = new Drone(nome, &baterias->at(bateriaId), posicao);
+            drones->push_back(*drone_montado);
+
+            vector<Bateria>::iterator iterator = baterias->begin() + bateriaId;
+            baterias->erase(iterator);
+
             cout << "Seu drone foi montado com sucesso :)" << endl;
         }
         else if (escolha == 4)
         {
+            // Usar os drones
         }
         else if (escolha == 5)
         {
@@ -92,25 +103,38 @@ void mainInterface()
     cout << "8. Sair" << endl;
 }
 
-int escolherBateria(vector<Bateria> baterias)
+int escolherBateria(vector<Bateria> *baterias)
 {
     // Mostrar as baterias disponiveis
     // pedir uma escolha do usuario
     // retirar a bateria escolhida do vetor de baterias
     int numBat;
-    if (baterias.empty())
+    if (baterias->empty())
     {
         cout << "Aparentemente nao existem baterias disponiveis no momento :(" << endl;
         return 1;
     }
     else
     {
-        for (int i = 0; i < baterias.size(); i++)
+        for (int i = 0; i < baterias->size() && baterias->at(i).getUso(); i++)
         {
-            printf("Bateria %d: (%d, %d)", i + 1, baterias.at(i).getMah, baterias.at(i).getTempoDeCarregamento())
+            printf("Bateria %d: (%d, %d)", i + 1, baterias->at(i).getMah(), baterias->at(i).getTempoDeCarregamento());
         }
     }
     cout << "Qual o numero da bateria escolhida?" << endl;
     cin >> numBat;
     return numBat - 1;
+}
+
+void listarDrones(vector<Drone> *drones)
+{
+    if (drones->empty())
+    {
+        cout << "Nao existem drones disponiveis no momento :(" << endl;
+        return 1;
+    }
+    else
+    {
+        for (int i = 0; i < drones->size(); i)
+    }
 }

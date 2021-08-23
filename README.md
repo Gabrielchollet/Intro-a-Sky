@@ -52,4 +52,8 @@ Além disso, estudar por conta própria um novo paradigma de programação e apl
 
 ### Introdução
 
-### Conceitos aprendidos
+Nesse workshop fomos intruduzidos aos principais conceitos do desenvolvimento front-end utilizando HTML-CSS-Javascript, e numa forma de fixar os conteúdos aprendidos foi proposta a criação de um site. Dessa forma, escolhi desenvolver uma aplicação simples de registro financeiro pessoal.
+
+![image](./images/printscreen.png)
+
+**Desafio**: 
